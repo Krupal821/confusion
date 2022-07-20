@@ -31,10 +31,10 @@ class DishDetail extends Component{ // presentation components becacuse there is
             )
         }
     }
-   renderComments(comments){
-    if(comments != null){
+   renderComments(dish){
+    if(dish != null){
        
-        const selectedDishComment = comments.map((comment) =>{
+        const selectedDishComment = dish.comments.map((comment) =>{
             var convertedDate = new Date(comment.date);
             var formattedDate = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit'}).format(convertedDate);
             return(
@@ -68,19 +68,19 @@ class DishDetail extends Component{ // presentation components becacuse there is
    }
     render(){
         const dish = this.props.dish;
-        const comments = this.props.comments;
         return(
+            <div class="container">
                 <div className="row">
                      <div className="col-12 col-md-5 m-1">
                         {this.renderDish(dish)}
                     </div>
                     
                         
-                        {this.renderComments(comments)}
+                        {this.renderComments(dish)}
                         
                    
                 </div>
-            
+                </div>
         )
     }
 
