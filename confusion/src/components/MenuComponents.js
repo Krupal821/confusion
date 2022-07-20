@@ -1,7 +1,8 @@
 import { Component } from "react";
 import {Card, CardImg, CardBody,CardText, CardImgOverlay, CardTitle} from 'reactstrap';
+import DishDetail from './DishdetailComponent';
 
-class Menu extends Component{
+class Menu extends Component{  // container components
 
     constructor(props){  // 1 props coming from app.js, construct should be created to get the props.
         super(props);
@@ -11,41 +12,20 @@ class Menu extends Component{
         };
     }
     
-    onDishSelect(dish){
+    onDishSelect(dish, comments){
         this.setState( {
-            selectedDish : dish   //this slelected dish will be updated from onclick event where the dish is coming form 
+            selectedDish : dish,  // onClick any card or any dish the selecteddish will be updted from null to dish(dish parameter)
+            selectedDishComment : comments //this slelected dish will be updated from onclick event where the SELECTED dish is coming frm 
         })
     }
 
-    renderSelectedDish(dish){
-        if(dish != null){
-            console.log(dish.id);
-            return(
-                <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                      <CardTitle>{dish.name}</CardTitle>
-                      <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-            )
-        }
-        else{
-            return(
-                <div>
-                    please Select Dish
-                </div>
-            )
-        }
-    }
+    
     render(){
 
        const menu = this.props.dishes.map((dish) => {  //2 - props coming from construct above
         return(
-            <div  className="col-12 col-md-5 m-1">
-                
-
-                    <Card key={dish.id} onClick= {() => this.onDishSelect(dish) }>                   {/* creating onclick and calling Ondish sleect fucntion where we gonna create a selected dish variable  */}
+            <div key={dish.id} className="col-12 col-md-5 m-1">
+                    <Card onClick= {() => this.onDishSelect(dish, dish.comments) }>                   {/* creating onclick and calling Ondish select fucntion(with 2 parameter selected Dish and Selected Dishcomment) where we gonna create a selected dish and comments variable  */}
                         <CardImg width="100%" height="100%" src={dish.image} alt={dish.name} />
                     <CardImgOverlay className="ml-5">
                         <CardTitle>{dish.name}</CardTitle>
@@ -60,12 +40,8 @@ class Menu extends Component{
                 <div className="row">
                     {menu}
                 </div>
-            <div className="row">
-            
-            <div  className="col-12 col-md-5 m-1">
-                    {this.renderSelectedDish(this.state.selectedDish)}
-                  </div>
-            </div>
+                {/* passing DIsh and Comments as props to below component this props are assigned variable which are comming from onDishSelect function */}
+                <DishDetail dish={this.state.selectedDish} comments={this.state.selectedDishComment}/>  
             </div>
         );
     }
