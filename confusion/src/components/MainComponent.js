@@ -1,10 +1,11 @@
 // created this Container component which contains only state and components
 import Menu from './MenuComponent';
-import DishDetail from './DishdetailComponent';
 import {DISHES} from '../shared/dishes';
 import Footer from './FooterComponent'
 import { Component } from 'react';
-import Header from './HeaderComponent'
+import Header from './HeaderComponent';
+import {Switch, Redirect, Route } from 'react-router-dom'
+import Home from './HomeComponent';
 
 class Main extends Component{
   constructor(props){
@@ -12,24 +13,24 @@ class Main extends Component{
 
     this.state = {     // this state will store array in dishes variable
       dishes: DISHES,
-      selectedDish: null   // DISHES coming from Dishes.js firslty seleted should be declared null before updating it.
     }
   }
-  onDishSelect(dishId){
-    this.setState( {
-        selectedDish : dishId,  // onClick any card or any dishid the selecteddish will be updted from null to dish(dish parameter)
-        
-    })
-}
+ 
   render(){
-  return (
+  
+    const HomePage = () => {
+      return(
+        <Home />
+      )
+    }
+   return (
     <div className="App">
         <Header />
-
-        {/* props -  dishes goes Menu componenes */}  {/* with below onclick dish id is passed on from the props of Menucomponent */}
-        <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} /> 
-        {/* below componets has dish props which contains the dishID[]  and this.state.dishes.filter((dish)) refers to the state on 14th line it filter dish and and from that dish id is compare to selectedDish from on select dish function  */}
-        <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}/>  
+        <Switch>
+          <Route path="/home" component={HomePage} />
+          <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
+          <Redirect to="/home" />
+        </Switch>
         <Footer />
       </div>
   );
