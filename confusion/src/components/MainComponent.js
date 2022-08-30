@@ -11,6 +11,7 @@ import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
 import DishDetail from './DishdetailComponent';
+import About from './AboutComponent';
 
 class Main extends Component{
   constructor(props){
@@ -40,14 +41,21 @@ class Main extends Component{
         comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId))}/>
       )
     }
+
+    const AboutUs = () => {
+      return(
+        <About leaders={this.state.leaders} />
+        );
+    }
    return (
     <div className="App">
         <Header />
         <Switch>
           <Route path="/home" component={HomePage} />
           <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
-          <Route path='/menu/:dishId' component={DishWithId}></Route>
+          <Route path='/menu/:dishId' component={DishWithId} />
           <Route exact path='/contactus' component={Contact}/>
+          <Route path='/aboutus' component={AboutUs}/>
           <Redirect to="/home" />
         </Switch>
         <Footer />
