@@ -31,3 +31,11 @@ address{
 .navbar-dark {
     background-color: #512DA8;
 }
+
+.container-fluid .container{
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
