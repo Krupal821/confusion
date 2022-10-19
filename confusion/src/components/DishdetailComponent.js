@@ -34,8 +34,8 @@ import {Link} from 'react-router-dom';
             var convertedDate = new Date(comment.date);
             var formattedDate = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit'}).format(convertedDate);
             return(
-                <div className="container">
-                <ul key={comment.id} className="list-unstyled">
+                <div key={comment.id} className="container">
+                <ul className="list-unstyled">
                     
                         <li>{comment.comment}</li>
                         <li>-- {comment.author}, {formattedDate}</li>

@@ -41,16 +41,16 @@ class Header extends Component{  // this is class component which will have stat
                     <NavbarBrand className='mr-auto' href="/"><img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
                     <Collapse isOpen={this.state.isNavOpen} navbar>
             <Nav navbar>
-            <NavItem>
+            <NavItem key='1'>
                                 <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem key='2'>
                                 <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg"></span> About Us</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem key='3'>
                                 <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem key='4'>
                                 <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
                             </NavItem>
             </Nav>
