@@ -18,7 +18,7 @@ class Contact extends Component {
     render() {
         const required = (val) => val && val.length;
         const maxLength = (len) => (val) =>  !(val) || (val.length <= len);
-        const minLegth = (len) => (val) => val && (val.len >= len);
+        const minLength = (len) => (val) => val && (val.length >= len);
         const isNumber = (val) => !isNaN(Number(val));
         const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
         return(
@@ -46,9 +46,9 @@ class Contact extends Component {
 	                                    <Control.text model=".firstname" id="firstname" name="firstname"
 	                                        placeholder="First Name" 
                                             className="form-control"
-	                                        validators={{required, maxLength : maxLength(15), minLegth: minLegth(3)}} />
+	                                        validators={{required, maxLength : maxLength(15), minLength: minLength(3)}} />
                                             <Errors 
-                                            className="text-danger" model='.firstname' show="touched" messages={{required: " is Required ", maxLength: " Must be less than 15 chars", minLegth: "Must be over 3 chars"}} > </Errors>
+                                            className="text-danger" model='.firstname' show="touched" messages={{required: " is Required ", maxLength: " Must be less than 15 chars", minLength: "Must be over 3 chars"}} > </Errors>
 	                                    
 	                                </Col>
 	                            </Row>
@@ -58,9 +58,9 @@ class Contact extends Component {
 	                                    <Control.text model=".lastname" id="lastname" name="lastname"
 	                                        placeholder="Last Name"
                                             className="form-control"
-                                            validators={{required, maxLength : maxLength(15), minLegth: minLegth(3)}} />
+                                            validators={{required, maxLength : maxLength(15), minLength: minLength(3)}} />
                                             <Errors 
-                                            className="text-danger" model='.lastname' show="touched" messages={{required: " is Required", maxLength: " Must be less than 15 chars", minLegth: "Must be over 3 chars"}} > </Errors>
+                                            className="text-danger" model='.lastname' show="touched" messages={{required: " is Required", maxLength: " Must be less than 15 chars", minLength: "Must be over 3 chars"}} > </Errors>
 	                                    
 	                                </Col>
 	                            </Row>
@@ -70,8 +70,8 @@ class Contact extends Component {
 	                                    <Control.text model=".tel" id="telnum" name="telnum"
 	                                        placeholder="Tel. Number"
                                             className="form-control"
-	                                        validators={{required, isNumber, maxLength: maxLength(10), minLegth: minLegth(8) }} />
-	                                    <Errors className="text-danger" model='.tel' show="touched" messages={{required: " is Required", isNumber: "should be a number", maxLength: " Must be less than 10 chars", minLegth: "Must be over 8 chars"}}>
+	                                        validators={{required, isNumber, maxLength: maxLength(10), minLength: minLength(8) }} />
+	                                    <Errors className="text-danger" model='.tel' show="touched" messages={{required: " is Required", isNumber: "should be a number", maxLength: " Must be less than 10 chars", minLength: "Must be over 8 chars"}}>
 
                                         </Errors>
 	                                </Col>
